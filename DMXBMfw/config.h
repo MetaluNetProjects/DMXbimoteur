@@ -20,5 +20,7 @@
 
 #define RAMP_UINCPOW 8
 
+#define SIG_LED K1
+
 #endif // _CONFIG_H_
 

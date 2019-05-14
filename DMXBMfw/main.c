@@ -29,7 +29,11 @@ void setup(void) {
 	fruitInit();
 			
 	pinModeDigitalOut(LED); 	// set the LED pin mode to digital out
-	digitalClear(LED);		// clear the LED
+	digitalClear(LED);			// clear the LED
+
+	pinModeDigitalOut(SIG_LED); // set the SIG_LED pin mode to digital out
+	digitalClear(SIG_LED);		// clear the SIG_LED
+
 	delayStart(mainDelay, 5000); 	// init the mainDelay to 5 ms
 
 	pinModeDigitalIn(CHANSET_SWITCH); 	// set the CHANSET_SWITCH pin mode to digital input
@@ -48,6 +52,7 @@ void setup(void) {
 	speedRampA.maxAccel = speedRampA.maxDecel = speedRampB.maxAccel = speedRampB.maxDecel = 32767;
 	speedRampA.maxSpeed = speedRampB.maxSpeed = 1200;
 	
+	DMXSlaveInit();
 	EEreadMain();
 }
 
@@ -99,7 +104,13 @@ void loop() {
 		rampGoto(&speedRampA, DMX_to_PWM(0));
 		rampGoto(&speedRampB, DMX_to_PWM(1));
 
-		if(debug || (maxReceivedChan > 2)) digitalSet(LED); else digitalClear(LED);
+		if(debug || (maxReceivedChan > 2)) {
+			digitalSet(LED); 
+			digitalSet(SIG_LED); 
+		} else {
+			digitalClear(LED);
+			digitalClear(SIG_LED);
+		}
 		
 		rampCompute(&speedRampA);
 		rampCompute(&speedRampB);
