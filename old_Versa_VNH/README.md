@@ -2,7 +2,7 @@
 
 DMX512 control of 2 DC motors, for the GroupeF company.
 
-La carte DMXbimoteur permet de contrôler la vitesse de 2 moteurs CC de 12V à 48 V par une connexion DMX512.
+La carte DMXbimoteur permet de contrôler la vitesse de 2 moteurs CC de 12V à 24 V par une connexion DMX512.
 
 ### assignation du canal DMX
 
